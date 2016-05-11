@@ -10,14 +10,46 @@
   <!--
     application.css is where you put your styles
   -->
-  <link rel="stylesheet" href="/css/application.css">
+  <!-- <link rel="stylesheet" href="/css/application.css"> -->
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
-  <title></title>
+  <title>Grassoverflow</title>
 </head>
 <body>
-  <%= yield %>
+  <div class="container">
+
+  <% if current_user %>
+    <nav>
+      <ul>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/users/<%= current_user.id %>"><%= current_user.username.capitalize %></a></li>
+      </ul>
+    </nav><br>
+  <% else %>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/users/new">Register</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </nav><br>
+  <% end %>
+    <h1>Grassoverflow</h1>
+    <%= yield %>
+
+    <footer>
+      <nav class="footer-links">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="https://github.com/lombardo-chcg/grassoverflow">GitHub</a></li>
+        </ul>
+      </nav>
+    </footer>
+  </div>
 </body>
 </html>

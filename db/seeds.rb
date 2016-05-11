@@ -8,7 +8,7 @@ Vote.destroy_all
   User.create!(
     username: Faker::Name.name,
     email: Faker::Internet.email,
-    hash_word: "password"
+    password: "password"
     )
 end
 

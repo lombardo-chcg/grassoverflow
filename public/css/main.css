@@ -1,0 +1,65 @@
+body {
+  background-color: #eceeef;
+}
+.container {
+  width: 600px;
+  margin: auto;
+
+}
+
+.title {
+  text-align: center;
+}
+
+.title:hover {
+  color: green;
+}
+
+ul {
+  padding: 0;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline-block;
+  padding: .3em;
+  float: right;
+}
+
+li a {
+  text-decoration: none;
+  font-size: 1em;
+}
+
+footer {
+  background-color: #11181C;
+  color: white;
+  width: 600px;
+  height: 30px;
+  position: static;
+  bottom: 0;
+}
+
+footer a {
+  color: white;
+  padding: 0;
+}
+
+footer nav ul {
+  list-style: none;
+  display: inline-block;
+  float: right;
+
+}
+
+footer nav ul {
+  margin: 0;
+}
+
+.form-item {
+  padding: .5em 0 .5em 0;
+}
+
+.center-form {
+  text-align: center;
+}
