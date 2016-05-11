@@ -4,17 +4,20 @@ get '/questions' do
 end
 
 get '/questions/new' do
+  authorize!
   erb :'questions/new'
 end
 
 post '/questions' do
+  authorize!
+
   title = params[:title]
   content = params[:content]
 
   @question = Question.new(
     title: title,
     content: content,
-    author_id: 1 # session[:user_id]
+    author_id: current_user.id # session[:user_id]
     )
 
   if @question.save
