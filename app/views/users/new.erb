@@ -1,0 +1,12 @@
+<div class="center-form">
+  <h2>Sign up</h2>
+
+  <form action="/users" method="post">
+    <div class="form-item"><input type="text" name="user[username]" placeholder="username"></input></div>
+    <div class="form-item"><input type="text" name="user[email]" placeholder="email"></input></div>
+    <div class="form-item"><input type="password" name="user[password]" placeholder="password"></input></div>
+    <div class="form-item"><input type="submit" value="Create Account!"></input></div>
+  </form>
+</div>
+
+<%= erb :_errors %>
