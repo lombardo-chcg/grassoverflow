@@ -1,0 +1,9 @@
+<% @questions.each do |question| %>
+  <article id="<%= question.id %>">
+      <h2><a href='/questions/<%= question.id %>'><%= question.title %></a></h2>
+      <p>
+        <span class='username'><%= question.author %></span>
+        <span class='timestamp'><%= question.created_at %></span>
+      </p>
+  </article>
+<% end %>
