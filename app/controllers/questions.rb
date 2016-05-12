@@ -30,7 +30,7 @@ end
 
 get '/questions/:id' do
   @question = Question.find(params[:id].to_i)
-  erb :'questions/show'
+  erb :'/questions/show'
 end
 
 post '/questions/:id/vote' do
