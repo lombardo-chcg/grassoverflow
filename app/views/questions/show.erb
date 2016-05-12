@@ -2,16 +2,21 @@
   <h1>Title: <%= @question.title %></h1>
   <p>Author: <%= @question.author.username %></p>
   <p>Content: <%= @question.content %></p>
+  <%= erb :'/comments/_new-question-comment' %>
     <ul>
+
     <% @question.comments.each do |comment| %>
         <li>Question Comment Content: <%= comment.content %>
           <span>Comment Author: <%= comment.author.username %></span>
         </li>
+
      <% end %>
     </ul>
+
   <% @question.answers.each do |answer| %>
     <p>Answer Author: <%= answer.author.username %></p>
     <p>Answer Content: <%= answer.content %></p>
+    <%= erb :'/comments/_new-answer-comment', :locals => { answer: answer, question: @question } %>
     <ul>
     <% answer.comments.each do |comment| %>
         <li>Answer Comment Content: <%= comment.content %>
