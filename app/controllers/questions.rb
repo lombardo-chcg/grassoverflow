@@ -32,3 +32,14 @@ get '/questions/:id' do
   @question = Question.find(params[:id].to_i)
   erb :'questions/show'
 end
+
+post '/questions/:id/vote' do
+
+  if params[:upvote]
+    Vote.create(votable_id: params[:id], votable_type: "Question", voter_id: session[:user_id], point: true)
+  elsif params[:downvote]
+    Vote.create(votable_id: params[:id], votable_type: "Question", voter_id: session[:user_id], point: false)
+  end
+
+  redirect '/'
+end
