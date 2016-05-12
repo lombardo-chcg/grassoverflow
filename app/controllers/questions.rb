@@ -32,3 +32,39 @@ get '/questions/:id' do
   @question = Question.find(params[:id].to_i)
   erb :'/questions/show'
 end
+
+post '/questions/:id/vote' do
+  authorize!
+
+  if params[:upvote]
+    Vote.create(votable_id: params[:id], votable_type: "Question", voter_id: session[:user_id], point: true)
+  elsif params[:downvote]
+    Vote.create(votable_id: params[:id], votable_type: "Question", voter_id: session[:user_id], point: false)
+  end
+
+  redirect "/questions/#{params[:id]}"
+end
+
+post '/comments/:id/vote' do
+  authorize!
+
+  if params[:upvote]
+    Vote.create(votable_id: params[:id], votable_type: "Comment", voter_id: session[:user_id], point: true)
+  elsif params[:downvote]
+    Vote.create(votable_id: params[:id], votable_type: "Comment", voter_id: session[:user_id], point: false)
+  end
+
+  redirect "/questions/#{params[:question_id]}"
+end
+
+post '/answers/:id/vote' do
+  authorize!
+
+  if params[:upvote]
+    Vote.create(votable_id: params[:id], votable_type: "Answer", voter_id: session[:user_id], point: true)
+  elsif params[:downvote]
+    Vote.create(votable_id: params[:id], votable_type: "Answer", voter_id: session[:user_id], point: false)
+  end
+
+  redirect "/questions/#{params[:question_id]}"
+end
