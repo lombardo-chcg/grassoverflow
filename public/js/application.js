@@ -64,37 +64,37 @@ $(".answer-container").on("submit",".upvote-answer-button", function(event){
 
   });
 
-// $(".answer-comment-container").on("submit",".answer-comment-upvote-button",function(event){
-//     event.preventDefault();
-//     var count = $(this).closest('div').find('.answer-comment-vote-count')
-//     var route = $(this).attr("action");
-//     var $request = $.ajax({
-//       method: "POST",
-//       url: route,
-//       data: "upvote"
+$(".answer-container").on("submit",".answer-comment-upvote-button",function(event){
+    event.preventDefault();
+    var count = $(this).closest('.answer-comment-post').find('.answer-comment-vote-count');
+    var route = $(this).attr("action");
+    var $request = $.ajax({
+      method: "POST",
+      url: route,
+      data: "upvote"
 
-//     });
+    });
 
-//       $request.done(function(vote_count){
-//         count.text(vote_count);
-//       });
-//   });
+      $request.done(function(vote_count){
+        count.text(vote_count);
+      });
+  });
 
 
-//   $(".answer-comment-container").on("submit",".answer-comment-downvote-button",function(event){
-//     event.preventDefault();
-//     var count = $(this).closest('div').find('.answer-comment-vote-count')
-//     var route = $(this).attr("action");
-//     var $request = $.ajax({
-//       method: "POST",
-//       url: route,
-//       data: "downvote"
-//     });
+  $(".answer-container").on("submit",".answer-comment-downvote-button",function(event){
+    event.preventDefault();
+    var count = $(this).closest('.answer-comment-post').find('.answer-comment-vote-count');
+    var route = $(this).attr("action");
+    var $request = $.ajax({
+      method: "POST",
+      url: route,
+      data: "downvote"
+    });
 
-//       $request.done(function(vote_count){
-//         count.text(vote_count);
-//       });
-//   });
+      $request.done(function(vote_count){
+        count.text(vote_count);
+      });
+  });
 
 
 $(".question-comment-container").on("submit",".comment-upvote-button", function(event){
