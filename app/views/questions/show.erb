@@ -1,12 +1,12 @@
 <div class="container">
 
   <!-- question upvote button -->
-  <form class="#question-upvote-button" method="post" action='/questions/<%= @question.id %>/vote'>
+  <form class="question-upvote-button" method="post" action='/questions/<%= @question.id %>/vote'>
     <button type="submit" name="upvote" value="upvote">&#8593;</button>
   </form>
 
   <!-- question downvote button -->
-  <form class="#question-downvote-button" method="post" action='/questions/<%= @question.id %>/vote'>
+  <form class="question-downvote-button" method="post" action='/questions/<%= @question.id %>/vote'>
     <button type="submit" name="downvote" value="downvote">&#8595;</button>
   </form>
 
@@ -39,7 +39,7 @@
   <div class="question-comment-container">
     <ul>
     <% @question.comments.each do |comment| %>
-
+    <div class ="question-comment-post">
     <!-- upvote button for this comment -->
       <form class="comment-upvote-button" method="post" action='/comments/<%= comment.id %>/vote'>
         <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
@@ -63,7 +63,7 @@
           <span>Comment Author: <%= comment.author.username %></span>
         </li>
       </div>
-
+     </div>
      <% end %>
     </ul>
   </div>
@@ -75,7 +75,7 @@
   <div class="answer-container">
   <!-- iterator for all answers -->
   <% sorted_answers_array.each do |answer| %>
-
+  <div class="answer-post">
     <!-- upvote this answer -->
     <form class="upvote-answer-button" method="post" action='/answers/<%= answer.id %>/vote'>
       <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
@@ -122,6 +122,7 @@
       <ul>
       <% answer.comments.each do |comment| %>
         <!-- upvote this answer comment -->
+        <div class="answer-comment-post">
         <form class="answer-comment-upvote-button" method="post" action='/comments/<%= comment.id %>/vote'>
           <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
           <button type="submit" name="upvote" value="upvote">&#8593;</button>
@@ -144,9 +145,11 @@
               <span>Comment Author: <%= comment.author.username %></span>
             </li>
         </div>
+      </div>
       <% end %>
        <p>____________</p>
       </ul>
+    </div>
   <% end %>
   </div>
 
