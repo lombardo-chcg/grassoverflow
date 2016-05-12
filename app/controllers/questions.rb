@@ -34,6 +34,7 @@ get '/questions/:id' do
 end
 
 post '/questions/:id/vote' do
+  authorize!
 
   if params[:upvote]
     Vote.create(votable_id: params[:id], votable_type: "Question", voter_id: session[:user_id], point: true)
@@ -41,5 +42,29 @@ post '/questions/:id/vote' do
     Vote.create(votable_id: params[:id], votable_type: "Question", voter_id: session[:user_id], point: false)
   end
 
-  redirect '/'
+  redirect "/questions/#{params[:id]}"
+end
+
+post '/comments/:id/vote' do
+  authorize!
+
+  if params[:upvote]
+    Vote.create(votable_id: params[:id], votable_type: "Comment", voter_id: session[:user_id], point: true)
+  elsif params[:downvote]
+    Vote.create(votable_id: params[:id], votable_type: "Comment", voter_id: session[:user_id], point: false)
+  end
+
+  redirect "/questions/#{params[:question_id]}"
+end
+
+post '/answers/:id/vote' do
+  authorize!
+
+  if params[:upvote]
+    Vote.create(votable_id: params[:id], votable_type: "Answer", voter_id: session[:user_id], point: true)
+  elsif params[:downvote]
+    Vote.create(votable_id: params[:id], votable_type: "Answer", voter_id: session[:user_id], point: false)
+  end
+
+  redirect "/questions/#{params[:question_id]}"
 end
