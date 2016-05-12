@@ -1,9 +1,9 @@
 body {
-  background-color: #eceeef;
 }
 .container {
-  width: 600px;
+  width: 800px;
   margin: auto;
+  background-color: #eceeef;
 
 }
 
@@ -29,12 +29,13 @@ nav ul li {
 li a {
   text-decoration: none;
   font-size: 1em;
+  color: black;
 }
 
 footer {
   background-color: #11181C;
   color: white;
-  width: 600px;
+  width: 800px;
   height: 30px;
   position: static;
   bottom: 0;
