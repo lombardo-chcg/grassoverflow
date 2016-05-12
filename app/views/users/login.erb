@@ -1,11 +1,13 @@
 <div class="center-form">
   <h2>Login</h2>
 
-  <form action="/login" method="post">
+  <form action="/login" method="post" id="login-form">
     <div class="form-item"><input type="text" name="username" placeholder="username"></input></div>
     <div class="form-item"><input type="password" name="password" placeholder="password"></input></div>
     <div class="form-item"><input type="submit" value="Login"></input></div>
   </form>
 </div>
+
+<img src="lawnmower.png" id="lawnmower" style="width: 150px; position: relative;">
 
 <%= erb :_errors %>
