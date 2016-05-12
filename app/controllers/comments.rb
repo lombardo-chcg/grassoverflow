@@ -5,21 +5,31 @@ end
 
 # create a new comment on a question
 post '/questions/:question_id/comments' do
-  @comment = Comment.create(content: params[:content], commentable_id: params[:question_id], author_id: session[:user_id])
-  question_id = params[:question_id]
+  current_question = Question.find(params[:question_id])
+  current_comment = current_question.comments.new(content: params[:content], author_id: current_user.id)
 
-  redirect "/questions/#{question_id}"
+  if current_comment.save
+    redirect "/questions/#{current_question.id}"
+  else
+    @errors = current_comment.errors.full_messages
+    erb :"/questions/#{current_question.id}"
+  end
 end
 
 # create a new comment on an answer
 post '/questions/:question_id/answers/:answer_id/comments' do
+  question_id = params[:question_id]
+  current_answer = Answer.find(params[:answer_id])
+  current_comment = current_answer.comments.new(content: params[:content], author_id: current_user.id)
+  answer_id = params[:answer_id]
 
+  if current_comment.save
+    redirect "/questions/#{question_id}"
+  else
+    @errors = current_comment.errors.full_messages
+    erb :"/questions/#{question_id}"
+  end
 end
 
 
-# <input type="text" name="comment[content]">
-
-
-# get "/questions/#{params[:question_id]}" do
-# end#   "Hello World"
 
