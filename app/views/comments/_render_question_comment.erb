@@ -1,0 +1,25 @@
+  <div class ="question-comment-post">
+    <!-- upvote button for this comment -->
+      <form class="comment-upvote-button" method="post" action='/comments/<%= comment.id %>/vote'>
+        <input type="hidden" name="question_id" value="<%= question.id %>"></input>
+        <button type="submit" name="upvote" value="upvote">&#8593;</button>
+      </form>
+
+      <!-- downvote button for this comment  -->
+      <form class="comment-downvote-button" method="post" action='/comments/<%= comment.id %>/vote'>
+        <input type="hidden" name="question_id" value="<%= question.id %>"></input>
+        <button type="submit" name="downvote" value="downvote">&#8595;</button>
+      </form>
+
+      <!-- show comment vote count -->
+      <div class="comment-vote-count">
+        <%= comment.count_votes %>
+      </div>
+
+      <!-- show specific comment content for this comment -->
+      <div class="comment-content">
+        <li>Question Comment Content: <%= comment.content %>
+          <span>Comment Author: <%= comment.author.username %></span>
+        </li>
+      </div>
+  </div>
