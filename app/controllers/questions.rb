@@ -35,36 +35,50 @@ end
 
 post '/questions/:id/vote' do
   authorize!
-
-  if params[:upvote]
+  if params.has_key?("upvote")
     Vote.create(votable_id: params[:id], votable_type: "Question", voter_id: session[:user_id], point: true)
-  elsif params[:downvote]
+  else
     Vote.create(votable_id: params[:id], votable_type: "Question", voter_id: session[:user_id], point: false)
   end
 
-  redirect "/questions/#{params[:id]}"
+  if request.xhr?
+    @question = Question.find(params[:id].to_i)
+    @question.count_votes.to_s
+  else
+    redirect "/questions/#{params[:id]}"
+  end
 end
 
 post '/comments/:id/vote' do
   authorize!
 
-  if params[:upvote]
+  if params.has_key?("upvote")
     Vote.create(votable_id: params[:id], votable_type: "Comment", voter_id: session[:user_id], point: true)
-  elsif params[:downvote]
+  else
     Vote.create(votable_id: params[:id], votable_type: "Comment", voter_id: session[:user_id], point: false)
   end
 
-  redirect "/questions/#{params[:question_id]}"
+  if request.xhr?
+    @comment = Comment.find(params[:id].to_i)
+    @comment.count_votes.to_s
+  else
+    redirect "/questions/#{params[:question_id]}"
+  end
 end
 
 post '/answers/:id/vote' do
   authorize!
-
-  if params[:upvote]
+p params
+  if params.has_key?("upvote")
     Vote.create(votable_id: params[:id], votable_type: "Answer", voter_id: session[:user_id], point: true)
-  elsif params[:downvote]
+  else
     Vote.create(votable_id: params[:id], votable_type: "Answer", voter_id: session[:user_id], point: false)
   end
 
-  redirect "/questions/#{params[:question_id]}"
+  if request.xhr?
+    @answer = Answer.find(params[:id].to_i)
+    @answer.count_votes.to_s
+  else
+    redirect "/questions/#{params[:question_id]}"
+  end
 end
