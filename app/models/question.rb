@@ -7,4 +7,8 @@ class Question < ActiveRecord::Base
   def count_votes
     votes.where(point: true).count - votes.where(point: false).count
   end
+
+  def author_logged_in?
+    current_user.id == self.author.id
+  end
 end

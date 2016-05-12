@@ -14,4 +14,10 @@ helpers do
   def redirect_unless_self(id)
     redirect '/' unless current_user.id == id
   end
+
+  def author_logged_in?(question)
+    if logged_in?
+      current_user.id == question.author.id
+    end
+  end
 end

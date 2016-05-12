@@ -1,18 +1,30 @@
 <div class="container">
+
+  <!-- upvote button -->
   <form method="post" action='/questions/<%= @question.id %>/vote'>
     <button type="submit" name="upvote" value="upvote">&#8593;</button>
   </form>
 
+
   <form method="post" action='/questions/<%= @question.id %>/vote'>
     <button type="submit" name="downvote" value="downvote">&#8595;</button>
   </form>
+
   <%= @question.count_votes %>
   <h1>Title: <%= @question.title %></h1>
   <p>Author: <%= @question.author.username %></p>
   <p>Content: <%= @question.content %></p>
-  <%= erb :'/comments/_new-question-comment' %>
-    <ul>
 
+  <div>
+    <form action="/questions/<%= @question.id %>/answers/new" method='post'>
+      <input type='text' name='content' placeholder='Your Answer...' >
+      <input type='submit' name='Post'>
+    </form>
+  </div>
+
+  <%= erb :'/comments/_new-question-comment' %>
+
+    <ul>
     <% @question.comments.each do |comment| %>
     <form method="post" action='/comments/<%= comment.id %>/vote'>
       <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
@@ -32,7 +44,9 @@
      <% end %>
     </ul>
 
-  <% @question.answers.each do |answer| %>
+  <% sorted_answers_array = @question.answers.order(:created_at) %>
+
+  <% sorted_answers_array.each do |answer| %>
   <form method="post" action='/answers/<%= answer.id %>/vote'>
     <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
     <button type="submit" name="upvote" value="upvote">&#8593;</button>
@@ -46,7 +60,18 @@
 
     <p>Answer Author: <%= answer.author.username %></p>
     <p>Answer Content: <%= answer.content %></p>
+    <%if answer.sharpest_blade %>
+      <h3> SHARPEST BLADE </h3>
+    <% end %>
     <%= erb :'/comments/_new-answer-comment', :locals => { answer: answer, question: @question } %>
+
+    <% if author_logged_in?(@question) %>
+      <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
+        <input type="hidden" name="_method" value="put">
+        <input type="submit" value="Sharpest Blade">
+      </form>
+    <% end %>
+
     <ul>
     <% answer.comments.each do |comment| %>
     <form method="post" action='/comments/<%= comment.id %>/vote'>
@@ -67,4 +92,5 @@
      <p>____________</p>
     </ul>
   <% end %>
+
 </div>
