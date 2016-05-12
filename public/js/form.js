@@ -16,11 +16,11 @@ $(document).ready(function() {
   });
 
 // add comment to answer
-  $(".answer-container").on("submit", "form", function(event) {
+  $(".answer-container").on("submit", ".answer-comment-form form", function(event) {
     event.preventDefault();
-    var localThis = $(this)
-    var comment = $(this).find('input').serialize();
-    var requestRoute = $(this).attr('action');
+    var $answerForm = $(this)
+    var comment = $answerForm.find('input').serialize();
+    var requestRoute = $answerForm.attr('action');
 
     var request = $.ajax({
       method: "POST",
@@ -28,7 +28,7 @@ $(document).ready(function() {
       data: comment
     });
     request.done(function(response) {
-         localThis.closest('.answer-post').find('ul').append(response)
+         $answerForm.closest('.answer-post').find('ul').append(response)
       // $(".answer-container ul").append(response);
       // this is appending to the wqhole container. we need it to
       // append to the answer in question
