@@ -1,96 +1,153 @@
 <div class="container">
 
-  <!-- upvote button -->
-  <form method="post" action='/questions/<%= @question.id %>/vote'>
+  <!-- question upvote button -->
+  <form class="#question-upvote-button" method="post" action='/questions/<%= @question.id %>/vote'>
     <button type="submit" name="upvote" value="upvote">&#8593;</button>
   </form>
 
-
-  <form method="post" action='/questions/<%= @question.id %>/vote'>
+  <!-- question downvote button -->
+  <form class="#question-downvote-button" method="post" action='/questions/<%= @question.id %>/vote'>
     <button type="submit" name="downvote" value="downvote">&#8595;</button>
   </form>
 
-  <%= @question.count_votes %>
-  <h1>Title: <%= @question.title %></h1>
-  <p>Author: <%= @question.author.username %></p>
-  <p>Content: <%= @question.content %></p>
+  <!-- show question vote count -->
+  <div class="question-votecount">
+    <%= @question.count_votes %>
+  </div>
 
-  <div>
+  <!-- show question content -->
+  <div class="question-content">
+    <h1>Title: <%= @question.title %></h1>
+    <p>Author: <%= @question.author.username %></p>
+    <p>Content: <%= @question.content %></p>
+  </div>
+
+  <!-- show add answer form  -->
+  <div class="new-answer-form">
     <form action="/questions/<%= @question.id %>/answers/new" method='post'>
       <input type='text' name='content' placeholder='Your Answer...' >
       <input type='submit' name='Post'>
     </form>
   </div>
 
-  <%= erb :'/comments/_new-question-comment' %>
+  <!-- show add comment form  -->
+  <div class="new-comment-form">
+    <%= erb :'/comments/_new-question-comment' %>
+  </div>
 
+    <!-- show all comments for this question -->
+  <div class="question-comment-container">
     <ul>
     <% @question.comments.each do |comment| %>
-    <form method="post" action='/comments/<%= comment.id %>/vote'>
-      <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
-      <button type="submit" name="upvote" value="upvote">&#8593;</button>
-    </form>
 
-    <form method="post" action='/comments/<%= comment.id %>/vote'>
-      <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
-      <button type="submit" name="downvote" value="downvote">&#8595;</button>
-    </form>
-    <%= comment.count_votes %>
+    <!-- upvote button for this comment -->
+      <form class="comment-upvote-button" method="post" action='/comments/<%= comment.id %>/vote'>
+        <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
+        <button type="submit" name="upvote" value="upvote">&#8593;</button>
+      </form>
 
+      <!-- downvote button for this comment  -->
+      <form class="comment-downvote-button" method="post" action='/comments/<%= comment.id %>/vote'>
+        <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
+        <button type="submit" name="downvote" value="downvote">&#8595;</button>
+      </form>
+
+      <!-- show comment vote count -->
+      <div class="comment-vote-count">
+        <%= comment.count_votes %>
+      </div>
+
+      <!-- show specific comment content for this comment -->
+      <div class="comment-content">
         <li>Question Comment Content: <%= comment.content %>
           <span>Comment Author: <%= comment.author.username %></span>
         </li>
+      </div>
 
      <% end %>
     </ul>
+  </div>
 
+
+  <!-- sort answers -->
   <% sorted_answers_array = @question.answers.order(:created_at) %>
 
+  <div class="answer-container">
+  <!-- iterator for all answers -->
   <% sorted_answers_array.each do |answer| %>
-  <form method="post" action='/answers/<%= answer.id %>/vote'>
-    <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
-    <button type="submit" name="upvote" value="upvote">&#8593;</button>
-  </form>
 
-  <form method="post" action='/answers/<%= answer.id %>/vote'>
-    <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
-    <button type="submit" name="downvote" value="downvote">&#8595;</button>
-  </form>
-  <%= answer.count_votes %>
-
-    <p>Answer Author: <%= answer.author.username %></p>
-    <p>Answer Content: <%= answer.content %></p>
-    <%if answer.sharpest_blade %>
-      <h3> SHARPEST BLADE </h3>
-    <% end %>
-    <%= erb :'/comments/_new-answer-comment', :locals => { answer: answer, question: @question } %>
-
-    <% if author_logged_in?(@question) %>
-      <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
-        <input type="hidden" name="_method" value="put">
-        <input type="submit" value="Sharpest Blade">
-      </form>
-    <% end %>
-
-    <ul>
-    <% answer.comments.each do |comment| %>
-    <form method="post" action='/comments/<%= comment.id %>/vote'>
+    <!-- upvote this answer -->
+    <form class="upvote-answer-button" method="post" action='/answers/<%= answer.id %>/vote'>
       <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
       <button type="submit" name="upvote" value="upvote">&#8593;</button>
     </form>
 
-    <form method="post" action='/comments/<%= comment.id %>/vote'>
+    <!-- downvote this answer -->
+    <form class="downvote-answer-button" method="post" action='/answers/<%= answer.id %>/vote'>
       <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
       <button type="submit" name="downvote" value="downvote">&#8595;</button>
     </form>
-    <%= comment.count_votes %>
+    <!-- show vote count for this answer -->
+    <div class="answer-vote-count">
+      <%= answer.count_votes %>
+    </div>
 
-        <li>Answer Comment Content: <%= comment.content %>
-          <span>Comment Author: <%= comment.author.username %></span>
-        </li>
-     <% end %>
-     <p>____________</p>
-    </ul>
+    <!-- show answer content -->
+    <div class="answer-content">
+      <p>Answer Author: <%= answer.author.username %></p>
+      <p>Answer Content: <%= answer.content %></p>
+
+      <!-- check for sharpest blade -->
+      <%if answer.sharpest_blade %>
+        <h3> SHARPEST BLADE </h3>
+      <% end %>
+    </div>
+
+      <!-- add a new comment to this answer -->
+      <div class="answer-comment-form">
+        <%= erb :'/comments/_new-answer-comment', :locals => { answer: answer, question: @question } %>
+      </div>
+
+      <!-- author votes for sharpest blade -->
+      <div class="sharpest-blade">
+        <% if author_logged_in?(@question) %>
+          <form action="/questions/<%= @question.id %>/answers/<%= answer.id %>" method="post">
+            <input type="hidden" name="_method" value="put">
+            <input type="submit" value="Sharpest Blade">
+          </form>
+        <% end %>
+      </div>
+
+      <!-- comments iterator for this answer -->
+      <ul>
+      <% answer.comments.each do |comment| %>
+        <!-- upvote this answer comment -->
+        <form class="answer-comment-upvote-button" method="post" action='/comments/<%= comment.id %>/vote'>
+          <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
+          <button type="submit" name="upvote" value="upvote">&#8593;</button>
+        </form>
+
+        <!-- downvote this answer comment -->
+        <form class="answer-comment-downvote-button" method="post" action='/comments/<%= comment.id %>/vote'>
+          <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
+          <button type="submit" name="downvote" value="downvote">&#8595;</button>
+        </form>
+
+        <!-- show votes on this comment -->
+        <div class="answer-comment-vote-count">
+          <%= comment.count_votes %>
+        </div>
+
+        <!-- show specific comment content -->
+        <div class="answer-comment-content">
+            <li>Answer Comment Content: <%= comment.content %>
+              <span>Comment Author: <%= comment.author.username %></span>
+            </li>
+        </div>
+      <% end %>
+       <p>____________</p>
+      </ul>
   <% end %>
+  </div>
 
 </div>
