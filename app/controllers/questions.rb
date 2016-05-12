@@ -35,6 +35,7 @@ end
 
 post '/questions/:id/vote' do
   authorize!
+  p params
   if params.has_key?("upvote")
     Vote.create(votable_id: params[:id], votable_type: "Question", voter_id: session[:user_id], point: true)
   else
