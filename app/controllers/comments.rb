@@ -19,16 +19,24 @@ end
 # create a new comment on an answer
 post '/questions/:question_id/answers/:answer_id/comments' do
   question_id = params[:question_id]
+  @question = Question.find(question_id)
   current_answer = Answer.find(params[:answer_id])
-  current_comment = current_answer.comments.new(content: params[:content], author_id: current_user.id)
+  comment = current_answer.comments.new(content: params[:content], author_id: current_user.id)
   answer_id = params[:answer_id]
-
-  if current_comment.save
-    redirect "/questions/#{question_id}"
+p params
+if request.xhr?
+  if comment.save
+    erb :"/comments/_render_answer_comment", layout: false, :locals => {comment: comment}
   else
-    @errors = current_comment.errors.full_messages
-    erb :"/questions/#{question_id}"
+    status 422
   end
+end
+
+  #   redirect "/questions/#{question_id}"
+  # else
+  #   @errors = current_comment.errors.full_messages
+  #   erb :"/questions/#{question_id}"
+  # end
 end
 
 
