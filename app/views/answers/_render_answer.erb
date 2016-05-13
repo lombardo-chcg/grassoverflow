@@ -1,20 +1,22 @@
 <div class="answer-post">
 
+  <div class="vote-buttons">
     <!-- upvote this answer -->
     <form class="upvote-answer-button" method="post" action='/answers/<%= answer.id %>/vote'>
       <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
-      <button type="submit" name="upvote" value="upvote">&#8593;</button>
-    </form>
-
-    <!-- downvote this answer -->
-    <form class="downvote-answer-button" method="post" action='/answers/<%= answer.id %>/vote'>
-      <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
-      <button type="submit" name="downvote" value="downvote">&#8595;</button>
+      <button class="upvote_button" type="submit" name="upvote" value="upvote"></button>
     </form>
     <!-- show vote count for this answer -->
     <div class="answer-vote-count">
       <%= answer.count_votes %>
     </div>
+    <!-- downvote this answer -->
+    <form class="downvote-answer-button" method="post" action='/answers/<%= answer.id %>/vote'>
+      <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
+      <button class="downvote_button" type="submit" name="downvote" value="downvote"></button>
+    </form>
+  </div>
+
 
     <!-- show answer content -->
     <div class="answer-content">

@@ -20,7 +20,7 @@
 
   <!-- show question content -->
   <div class="question-content">
-    <h1>Title: <%= @question.title %></h1>
+    <h1><%= @question.title %></h1>
     <p>Author: <%= @question.author.username %></p>
     <p>Content: <%= @question.content %></p>
   </div>
@@ -29,7 +29,7 @@
   <div class="new-answer-form">
     <form action="/questions/<%= @question.id %>/answers/new" method='post'>
       <input type='text' name='content' placeholder='Your Answer...' >
-      <input type='submit' name='Post'>
+      <input class="submit_button" type='submit' name='Post'>
     </form>
   </div>
 

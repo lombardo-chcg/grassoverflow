@@ -16,6 +16,7 @@ $(document).ready(function() {
     });
     request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
     // request fail
   });
@@ -41,6 +42,7 @@ $(document).ready(function() {
     });
     request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
   });
 
@@ -62,6 +64,7 @@ $(document).ready(function() {
     });
     request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
   });
 

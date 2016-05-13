@@ -1,4 +1,4 @@
-<div class="container">
+<div class="new-container">
 
   <% if @errors %>
     <% @errors.each do |error| %>
@@ -6,10 +6,21 @@
     <% end %>
   <% end %>
 
+  <div class="new-question-page">
+  <br>
   <form id="posts" method="post" action="/questions">
     <input type="text" name="title" placeholder="title">
+    <br>
+    <br>
+
     <textarea rows="4" cols="50" type="text" name="content" placeholder="question goes here"></textarea>
+    <br>
+    <br>
+
     <input type="submit" value="submit new post">
+        <br>
+
   </form>
+  </div>
 
 </div>
