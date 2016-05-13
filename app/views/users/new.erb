@@ -1,14 +1,14 @@
 <div class="center-form">
-  <h2>Sign up</h2>
+  <h2 class="sign-up">Sign up</h2>
+<%= erb :_errors %>
 
   <form action="/users" method="post" id="login-form">
     <div class="form-item"><input type="text" name="user[username]" placeholder="username"></input></div>
     <div class="form-item"><input type="text" name="user[email]" placeholder="email"></input></div>
     <div class="form-item"><input type="password" name="user[password]" placeholder="password"></input></div>
-    <div class="form-item"><input type="submit" value="Create Account!"></input></div>
+    <div class="form-item"><input class="submit_button" type="submit" value="Create Account!"></input></div>
   </form>
 </div>
 
 <img src="/lawnmower.png" id="lawnmower" style="width: 150px; position: relative;">
 
-<%= erb :_errors %>

@@ -66,11 +66,10 @@
 
         <!-- show specific comment content -->
         <div class="answer-comment-content">
-            <li>Answer Comment Content: <%= comment.content %>
-              <span>Comment Author: <%= comment.author.username %></span>
+            <li>Answer Comment: <%= comment.content %>
+              <span class="italics"> <%= comment.author.username %></span>
             </li>
         </div>
       <% end %>
-       <p>____________</p>
       </ul>
 </div>

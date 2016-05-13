@@ -60,7 +60,7 @@ $(document).ready(function() {
     });
     request.done(function(response){
       $this.find('input:text').val('')
-      $(".question-comment-container").append(response);
+      $(".question-comment-container ul").append(response);
     });
     request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");

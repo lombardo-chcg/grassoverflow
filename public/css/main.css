@@ -53,6 +53,13 @@ footer {
   position: static;
   bottom: 0;
 }
+.blade-notice {
+
+  border: 10px solid green;
+  border-radius: 5px;
+  /*margin-left: -1.5em;*/
+  /*box-shadow: 10px 10px 5px #888888;*/
+}
 
 footer a {
   color: white;
@@ -156,6 +163,9 @@ h2 {
 .question-comment-container ul{
   list-style: none;
   padding: 0;
+  border-bottom: 1.5px dotted black;
+  margin-right: 1.3em;
+  padding-bottom: 2em;
 }
 
 .question-comment-post {
@@ -184,15 +194,12 @@ h2 {
   font-style: italic;
 }
 
-.blade-notice {
-  border: 10px solid green;
-  border-radius: 5px;
-  margin-left: -1.5em;
-}
+
 
 .answer-comment-post {
   padding: 1em 0 1em 0;
   list-style: none;
+  clear: both;
 }
 
 .answer-comment-content {
@@ -205,6 +212,7 @@ h2 {
 
 .question-content p {
   font-size: 1.5em;
+
 }
 
 .answer-post {
@@ -259,3 +267,6 @@ h2 {
   margin: 0 0 2em 2em;
 }
 
+.sign-up {
+  margin-left: 0em
+}
