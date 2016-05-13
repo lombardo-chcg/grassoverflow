@@ -75,7 +75,13 @@
   <div class="answer-container">
   <!-- iterator for all answers -->
   <% sorted_answers_array.each do |answer| %>
-  <div class="answer-post">
+
+  <% if answer.sharpest_blade %>
+    <div class="answer-post blade-notice">
+  <% else %>
+    <div class="answer-post">
+  <% end %>
+
     <!-- upvote this answer -->
     <form class="upvote-answer-button" method="post" action='/answers/<%= answer.id %>/vote'>
       <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
@@ -96,11 +102,6 @@
     <div class="answer-content">
       <p>Answer Author: <%= answer.author.username %></p>
       <p>Answer Content: <%= answer.content %></p>
-
-      <!-- check for sharpest blade -->
-      <%if answer.sharpest_blade %>
-        <h3> SHARPEST BLADE </h3>
-      <% end %>
     </div>
 
       <!-- add a new comment to this answer -->

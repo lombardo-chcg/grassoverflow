@@ -1,10 +1,12 @@
 get '/questions/:question_id/comments/new' do
+  authorize!
   erb :'/comments/new'
 end
 
 
 # create a new comment on a question
 post '/questions/:question_id/comments' do
+  authorize!
   question = Question.find(params[:question_id])
   comment = question.comments.new(content: params[:content], author_id: current_user.id)
 
@@ -26,6 +28,7 @@ end
 
 # create a new comment on an answer
 post '/questions/:question_id/answers/:answer_id/comments' do
+  authorize!
   question_id = params[:question_id]
   @question = Question.find(question_id)
   current_answer = Answer.find(params[:answer_id])

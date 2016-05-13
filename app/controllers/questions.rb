@@ -34,8 +34,11 @@ get '/questions/:id' do
 end
 
 post '/questions/:id/vote' do
-  authorize!
-  p params
+
+  if session[:user_id] == nil
+    return status 422
+  end
+
   if params.has_key?("upvote")
     Vote.create(votable_id: params[:id], votable_type: "Question", voter_id: session[:user_id], point: true)
   else
@@ -51,7 +54,9 @@ post '/questions/:id/vote' do
 end
 
 post '/comments/:id/vote' do
-  authorize!
+  if session[:user_id] == nil
+    return status 422
+  end
 
   if params.has_key?("upvote")
     Vote.create(votable_id: params[:id], votable_type: "Comment", voter_id: session[:user_id], point: true)
@@ -68,7 +73,9 @@ post '/comments/:id/vote' do
 end
 
 post '/answers/:id/vote' do
-  authorize!
+  if session[:user_id] == nil
+    return status 422
+  end
 p params
   if params.has_key?("upvote")
     Vote.create(votable_id: params[:id], votable_type: "Answer", voter_id: session[:user_id], point: true)
