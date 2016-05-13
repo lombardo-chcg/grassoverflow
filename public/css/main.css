@@ -1,10 +1,22 @@
+body{
+  font-family: 'Lora', serif;
+  background-image: url(../grass_park.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
 body {
 }
 .container {
   width: 800px;
   margin: auto;
-  background-color: #eceeef;
+  background-color: rgba(255,255,255, 0.65);
 
+}
+
+.show-container{
+  margin-left: 1.5em;
 }
 
 .title {
@@ -16,7 +28,8 @@ body {
 }
 
 ul {
-  padding: 0;
+  padding: 1em;
+  margin: 0;
 }
 
 nav ul li {
@@ -28,7 +41,7 @@ nav ul li {
 
 li a {
   text-decoration: none;
-  font-size: 1em;
+  font-size: 1.2em;
   color: black;
 }
 
@@ -54,7 +67,7 @@ footer nav ul {
 }
 
 footer nav ul {
-  margin: 0;
+  padding: 0;
 }
 
 .form-item {
@@ -65,7 +78,7 @@ footer nav ul {
   text-align: center;
 }
 
-.upvote_button{
+.upvote_button {
   /*padding: 2em;*/
   background: none;
   border: none;
@@ -94,6 +107,11 @@ footer nav ul {
   float: left;
 }
 
+h1 {
+  margin: 0 0 .8em .5em;
+  font-size: 3em;
+}
+
 h2 {
   margin-left: 1.35em;
 
@@ -101,4 +119,71 @@ h2 {
 
 .article{
  padding: 0.2em 0 0.2em 0;
+}
+
+.index-container {
+  margin-left: 1.5em;
+}
+
+.post-info {
+  font-style: italic;
+}
+
+.add_button{
+    background-color:#44c767;
+    -moz-border-radius:28px;
+    -webkit-border-radius:28px;
+    border-radius:28px;
+    border:1px solid #18ab29;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:17px;
+    padding:13px 25px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #2f6627;
+  }
+
+.add_button:hover {
+  background-color:#5cbf2a;
+}
+.add_button:active {
+  position:relative;
+  top:1px;
+}
+
+.question-comment-container ul{
+  list-style: none;
+  padding: 0;
+}
+
+.question-comment-post {
+  padding: 1em;
+}
+
+.comment-content {
+  margin-left: 2em;
+}
+
+.answer-comment-vote-count,
+.answer-vote-count,
+.comment-vote-count,
+.comment-vote-count {
+  text-align: center;
+
+}
+
+.answer-content {
+  margin-left: 2em;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.blade-notice {
+  border: 10px solid green;
+  border-radius: 5px;
+  margin-left: -1.5em;
 }
