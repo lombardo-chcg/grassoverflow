@@ -16,6 +16,7 @@ $(document).ready(function() {
 
       $request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
   });
 
@@ -35,6 +36,7 @@ $(document).ready(function() {
 
       $request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
 
   });
@@ -55,6 +57,7 @@ $(".answer-container").on("submit",".upvote-answer-button", function(event){
       });
       $request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
   });
 
@@ -74,6 +77,7 @@ $(".answer-container").on("submit",".upvote-answer-button", function(event){
       });
       $request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
 
   });
@@ -94,6 +98,7 @@ $(".answer-container").on("submit",".answer-comment-upvote-button",function(even
       });
       $request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
   });
 
@@ -113,6 +118,7 @@ $(".answer-container").on("submit",".answer-comment-upvote-button",function(even
       });
       $request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
   });
 
@@ -133,6 +139,7 @@ $(".question-comment-container").on("submit",".comment-upvote-button", function(
       });
       $request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
   });
 
@@ -152,6 +159,7 @@ $(".question-comment-container").on("submit",".comment-upvote-button", function(
       });
       $request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
   });
 
@@ -171,6 +179,7 @@ $(".question-comment-container").on("submit",".comment-upvote-button", function(
         });
       $request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
     });
 
@@ -190,6 +199,7 @@ $(".question-comment-container").on("submit",".comment-upvote-button", function(
         });
       $request.fail(function(){
         alert("Get off the lawn!  Or, login to perform this action.");
+        window.location.href = "http://localhost:9393/login";
       });
       });
 

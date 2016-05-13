@@ -4,7 +4,7 @@ Answer.destroy_all
 Comment.destroy_all
 Vote.destroy_all
 
-5.times do
+25.times do
   User.create!(
     username: Faker::Name.name,
     email: Faker::Internet.email,
@@ -12,9 +12,23 @@ Vote.destroy_all
     )
 end
 
+grass_questions = [
+"Why does my hair smell like grass?",
+"Can I eat grass for dinner?",
+"I have 5 pounds of grass for sale.  Any takers?",
+"Seeds taste good, right?",
+"I found some stems in my grass, will my mom be mad?",
+"Can we roll in the grass please?",
+"Do you prefer thousand island or ranch on your grass?",
+"I eat grass with my dog. Will you be my friend? (conversation starter)",
+"I like bluegrass.  But my wife prefers crabgrass. Is our marriage doomed??",
+"Rabbits, good or bad for the grass?",
+"Any goat enthusiasts in the house? 🐐 "
+]
+
 20.times do
   Question.create!(
-    title: Faker::Hipster.sentence,
+    title: grass_questions.sample,
     content: Faker::Hipster.paragraph,
     author_id: rand(1..5)
     )

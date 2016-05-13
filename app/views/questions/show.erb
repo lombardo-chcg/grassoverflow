@@ -20,16 +20,16 @@
 
   <!-- show question content -->
   <div class="question-content">
-    <h1>Title: <%= @question.title %></h1>
+    <h1><%= @question.title %></h1>
     <p>Author: <%= @question.author.username %></p>
-    <p>Content: <%= @question.content %></p>
+    <p><%= @question.content %></p>
   </div>
 
   <!-- show add answer form  -->
   <div class="new-answer-form">
     <form action="/questions/<%= @question.id %>/answers/new" method='post'>
       <input type='text' name='content' placeholder='Your Answer...' >
-      <input type='submit' name='Post'>
+      <input class="submit_button" type='submit' name='Post'>
     </form>
   </div>
 
@@ -64,8 +64,8 @@
 
       <!-- show specific comment content for this comment -->
       <div class="comment-content">
-        <li>Question Comment Content: <%= comment.content %>
-          <span>Comment Author: <%= comment.author.username %></span>
+        <li><span class="italics">Comment: </span><%= comment.content %>
+          <span class="italics"><%= comment.author.username %></span>
         </li>
       </div>
      </div>
@@ -107,7 +107,7 @@
 
     <!-- show answer content -->
     <div class="answer-content">
-      <p>Answer Content: <%= answer.content %></p>
+      <p>Answer: <%= answer.content %></p>
       <p class="italics">~ <%= answer.author.username %></p>
     </div>
 
@@ -152,13 +152,12 @@
 
         <!-- show specific comment content -->
         <div class="answer-comment-content">
-            <li>Answer Comment Content: <%= comment.content %>
+            <li><span class="italics">Answer Comment: </span><%= comment.content %>
               <span class="italics"> <%= comment.author.username %></span>
             </li>
         </div>
       </div>
       <% end %>
-<!--        <p>____________</p> -->
      </div>
       </ul>
     </div>

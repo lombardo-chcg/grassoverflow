@@ -1,14 +1,9 @@
 <div class="answer-comment-post">
+  <div class="vote-buttons">
 <!-- upvote this answer comment -->
   <form class="answer-comment-upvote-button" method="post" action='/comments/<%= comment.id %>/vote'>
     <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
-    <button type="submit" name="upvote" value="upvote">&#8593;</button>
-  </form>
-
-  <!-- downvote this answer comment -->
-  <form class="answer-comment-downvote-button" method="post" action='/comments/<%= comment.id %>/vote'>
-    <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
-    <button type="submit" name="downvote" value="downvote">&#8595;</button>
+    <button class="upvote_button" type="submit" name="upvote" value="upvote"></button>
   </form>
 
   <!-- show votes on this comment -->
@@ -16,10 +11,18 @@
     <%= comment.count_votes %>
   </div>
 
+  <!-- downvote this answer comment -->
+  <form class="answer-comment-downvote-button" method="post" action='/comments/<%= comment.id %>/vote'>
+    <input type="hidden" name="question_id" value="<%= @question.id %>"></input>
+    <button class="downvote_button" type="submit" name="downvote" value="downvote"></button>
+  </form>
+</div>
+
+
   <!-- show specific comment content -->
   <div class="answer-comment-content">
-    <li>Answer Comment Content: <%= comment.content %>
-      <span>Comment Author: <%= comment.author.username %></span>
+    <li><span class="italics">Answer Comment:</span> <%= comment.content %><br>
+      <span class="italics">~ <%= comment.author.username %></span>
     </li>
   </div>
 
