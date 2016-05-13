@@ -13,6 +13,10 @@ $(document).ready(function() {
       $request.done(function(vote_count){
         $('.question-votecount').text(vote_count);
       });
+
+      $request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
+      });
   });
 
 
@@ -27,6 +31,10 @@ $(document).ready(function() {
 
       $request.done(function(vote_count){
         $('.question-votecount').text(vote_count);
+      });
+
+      $request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
       });
 
   });
@@ -45,6 +53,9 @@ $(".answer-container").on("submit",".upvote-answer-button", function(event){
       $request.done(function(vote_count){
         count.text(vote_count);
       });
+      $request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
+      });
   });
 
 
@@ -60,6 +71,9 @@ $(".answer-container").on("submit",".upvote-answer-button", function(event){
 
       $request.done(function(vote_count){
         count.text(vote_count);
+      });
+      $request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
       });
 
   });
@@ -78,6 +92,9 @@ $(".answer-container").on("submit",".answer-comment-upvote-button",function(even
       $request.done(function(vote_count){
         count.text(vote_count);
       });
+      $request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
+      });
   });
 
 
@@ -93,6 +110,9 @@ $(".answer-container").on("submit",".answer-comment-upvote-button",function(even
 
       $request.done(function(vote_count){
         count.text(vote_count);
+      });
+      $request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
       });
   });
 
@@ -111,6 +131,9 @@ $(".question-comment-container").on("submit",".comment-upvote-button", function(
       $request.done(function(vote_count){
         count.text(vote_count);
       });
+      $request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
+      });
   });
 
 
@@ -126,6 +149,9 @@ $(".question-comment-container").on("submit",".comment-upvote-button", function(
 
       $request.done(function(vote_count){
         count.text(vote_count);
+      });
+      $request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
       });
   });
 
@@ -143,6 +169,9 @@ $(".question-comment-container").on("submit",".comment-upvote-button", function(
         $request.done(function(vote_count){
           count.text(vote_count);
         });
+      $request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
+      });
     });
 
 
@@ -159,12 +188,26 @@ $(".question-comment-container").on("submit",".comment-upvote-button", function(
         $request.done(function(vote_count){
           count.text(vote_count);
         });
+      $request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
+      });
       });
 
 
-    $(".sharpest-blade").on("submit", function(event){
+    $(".sharpest-blade").on("submit", "form", function(event){
       event.preventDefault();
 
+      var $this = $(this)
+        var $route = $(this).attr("action");
+        var $request = $.ajax({
+          method: "PUT",
+          url: $route,
+        });
+
+        $request.done(function(sharpest_blade){
+          $('body').find('.blade-notice').removeClass()
+          $this.closest('.answer-post').addClass('blade-notice')
+        });
     });
 
 });

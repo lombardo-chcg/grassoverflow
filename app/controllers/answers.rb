@@ -29,6 +29,7 @@ post '/questions/:question_id/answers/new' do
 end
 
 put '/questions/:question_id/answers/:id' do
+  authorize!
   question = Question.find(params[:question_id])
 
   question.answers.each do |answer|
@@ -36,9 +37,20 @@ put '/questions/:question_id/answers/:id' do
     answer.save
   end
 
-  answer = Answer.find(params[:id])
-  answer.sharpest_blade = true
-  answer.save
-
-  redirect "/questions/#{params[:question_id]}"
+    answer = Answer.find(params[:id])
+    answer.sharpest_blade = true
+  if request.xhr?
+    if answer.save
+      "true"
+    else
+      status 422
+    end
+  else
+    if answer.save
+      redirect "/questions/#{params[:question_id]}"
+    else
+      @errors = answer.errors.full_messages
+      erb :"/questions/#{question_id}"
+    end
+  end
 end
