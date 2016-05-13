@@ -1,14 +1,18 @@
 <% @questions.each do |question| %>
-  <article id="<%= question.id %>">
+  <article class="article" id="<%= question.id %>">
+    <div>
+      <div class="vote-buttons">
       <form class="upvote" method="post" action='/questions/<%= question.id %>/vote'>
-        <button type="submit" name="upvote"></button>
+        <button class="upvote_button" type="submit" name="upvote"></button>
       </form>
 
       <form class ="downvote" method="post" action='/questions/<%= question.id %>/vote'>
-        <button type="submit" name="downvote"></button>
+        <button class ="downvote_button" type="submit" name="downvote"></button>
       </form>
+      </div>
 
       <h2><a href='/questions/<%= question.id %>'><%= question.title %></a></h2>
+      </div>
       <p>
         <span class='count-votes'><%= question.count_votes %></span> //
         <span class='username'><%= question.author.username %></span> //

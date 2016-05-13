@@ -64,3 +64,41 @@ footer nav ul {
 .center-form {
   text-align: center;
 }
+
+.upvote_button{
+  /*padding: 2em;*/
+  background: none;
+  border: none;
+  background-image: url(../up.png);
+  width: 15px;
+  height: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 120%;
+  padding: 0;
+}
+
+.downvote_button {
+  background: none;
+  border: none;
+  background-image: url(../down.png);
+  width: 15px;
+  height: 15px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 120%;
+  padding: 0;
+}
+
+.vote-buttons {
+  float: left;
+}
+
+h2 {
+  margin-left: 1.35em;
+
+}
+
+.article{
+ padding: 0.2em 0 0.2em 0;
+}
