@@ -2,6 +2,7 @@ $(document).ready(function() {
 // add new answer to bottom of answer-container
   $(".new-answer-form").on('submit', 'form', function(event) {
     event.preventDefault();
+    var $this = $(this)
     var formContent = $(this).find('input').serialize()
     var requestRoute = $(this).attr('action');
     var request = $.ajax({
@@ -10,8 +11,12 @@ $(document).ready(function() {
       data: formContent
     });
     request.done(function(response){
+      $this.find('input:text').val('')
       $(".answer-container").append(response);
     });
+    request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
+      });
     // request fail
   });
 
@@ -28,16 +33,21 @@ $(document).ready(function() {
       data: comment
     });
     request.done(function(response) {
+        $answerForm.find('input:text').val('')
          $answerForm.closest('.answer-post').find('ul').append(response)
       // $(".answer-container ul").append(response);
       // this is appending to the wqhole container. we need it to
       // append to the answer in question
     });
+    request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
+      });
   });
 
 // add comment to question
   $(".new-comment-form").on("submit", "form", function(event){
     event.preventDefault();
+    var $this = $(this)
     var comment = $(this).find('input').serialize();
     var requestRoute = $(this).attr('action');
 
@@ -47,8 +57,12 @@ $(document).ready(function() {
       data: comment
     });
     request.done(function(response){
+      $this.find('input:text').val('')
       $(".question-comment-container").append(response);
     });
+    request.fail(function(){
+        alert("Get off the lawn!  Or, login to perform this action.");
+      });
   });
 
 

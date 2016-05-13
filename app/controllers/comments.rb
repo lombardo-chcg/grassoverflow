@@ -6,7 +6,10 @@ end
 
 # create a new comment on a question
 post '/questions/:question_id/comments' do
-  authorize!
+  # authorize!
+  if session[:user_id] == nil
+    return status 422
+  end
   question = Question.find(params[:question_id])
   comment = question.comments.new(content: params[:content], author_id: current_user.id)
 
@@ -28,7 +31,10 @@ end
 
 # create a new comment on an answer
 post '/questions/:question_id/answers/:answer_id/comments' do
-  authorize!
+  # authorize!
+  if session[:user_id] == nil
+    return status 422
+  end
   question_id = params[:question_id]
   @question = Question.find(question_id)
   current_answer = Answer.find(params[:answer_id])

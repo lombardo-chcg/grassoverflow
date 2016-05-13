@@ -1,9 +1,10 @@
 post '/questions/:question_id/answers/new' do
-  authorize!
+  # authorize!
+  if session[:user_id] == nil
+    return status 422
+  end
 
   @question = Question.find(params[:question_id].to_i)
-
-  p params
 
   answer = @question.answers.new(
     content: params[:content],
@@ -29,7 +30,11 @@ post '/questions/:question_id/answers/new' do
 end
 
 put '/questions/:question_id/answers/:id' do
-  authorize!
+  # authorize!
+  if session[:user_id] == nil
+    return status 422
+  end
+
   question = Question.find(params[:question_id])
 
   question.answers.each do |answer|
